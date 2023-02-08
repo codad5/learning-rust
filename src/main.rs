@@ -6,6 +6,11 @@ enum Direction {
 }
 //using constant 
 const  MAX_NUM : u32 = 300;
+//  using struct 
+struct Human {
+    age : u32,
+    gender : &str
+}
 fn main() {
     // Trying a single comment
     /*
@@ -82,7 +87,6 @@ fn main() {
     // with out the iter method attached to the cars vector in the for-loop above  i wont be able to use the varaible under
     println!("{}", cars[0]);
 
-
     // using enums 
     let players_direction:Direction = Direction::Up;
     match players_direction {
@@ -90,10 +94,36 @@ fn main() {
         Direction::Down => println!("The player is moving up"),
         Direction::Left | Direction::Right => todo!()
     }
-    let test = callme();
+
+    // printing a statement 
+    // there are two way of prinitng out a dynamic statement 
+    // one way is to use this print!("i am a {}", variable_name)
+    // the other way is to use this print!("i am a {variable_name}"")
+    let sum = sum(8, 4);
+    println!("{sum}");
+
+
+    //  about refrencing in variable 
+    // for instance a variable job 
+    let job = "cooking";
+    let james_job = &job;
+    println!("{james_job}");
+    // but we can change james_job 
+    // for instance the code in the next line will throw an errir
+    // james_job = "driving";
+    // to be able to change the value we can di 
+    let mike_job = &mut job;
+    // we can now do 
+    // mike_job = "driving";
+    // note the code above gives an error 
+    // because we have to put an asterik(*) in front of the variable name 
+    *mike_job = "driving";
+    println!("{mike_job}");
+
 }
 
-fn callme() ->  u128{
-    println!("I am running call me");
-    return 43 as u128
+// creating a new function 
+fn  sum(num1 : i32, num2 : i32) -> i32 {
+    // println!(num1+num2)
+    return num1+num2;
 }
